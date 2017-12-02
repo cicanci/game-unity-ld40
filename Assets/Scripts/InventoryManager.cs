@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     private int _defaultFoodAmount;
 
-    [Header("Label Objects")]
+    [Header("Text Fields")]
     [SerializeField]
     private Text _waterAmount;
     [SerializeField]
