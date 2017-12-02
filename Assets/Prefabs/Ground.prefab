@@ -111,6 +111,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _groundBlockPrefab: {fileID: 1896370173372760, guid: 2e98df45e6246154482c6643a713069b,
     type: 2}
-  _boardSize: {x: 10, y: 10}
+  _boardSize: {x: 9, y: 9}
   _initialPosition: {x: 4.5, y: 0, z: 4.5}
   _spaceOffset: 1.1
