@@ -65,9 +65,9 @@ public class InventoryItem : MonoBehaviour
                 _lastSecond = seconds;
                 _currentProduction += _productionPerSecond;
                 
-                if(Mathf.RoundToInt(_productionPerSecond) < _maxProduction)
+                if(Mathf.RoundToInt(_currentProduction) < _maxProduction)
                 {
-                    _amountText.color = Color.black;
+                    _amountText.color = Color.white;
                 }
                 else
                 {
