@@ -1,33 +1,29 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections;
+using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    [Header("Default Values")]
     [SerializeField]
-    private int _defaultWaterAmount;
+    private InventoryItem _water;
     [SerializeField]
-    private int _defaultFoodAmount;
-
-    [Header("Text Fields")]
+    private InventoryItem _food;
     [SerializeField]
-    private Text _waterAmount;
-    [SerializeField]
-    private Text _foodAmount;
+    private InventoryItem _gold;
 
     private void Start()
     {
-        RemoteSettings.Updated += HandleRemoteUpdate;
+        StartCoroutine(WaitForRemoteSettings());
     }
 
-    private void OnDestroy()
+    private IEnumerator WaitForRemoteSettings()
     {
-        RemoteSettings.Updated -= HandleRemoteUpdate;
-    }
+        while(!RemoteSettingsCache.Initialized)
+        {
+            yield return null;
+        }
 
-    private void HandleRemoteUpdate()
-    {
-        _waterAmount.text = RemoteSettings.GetInt("initial_water", _defaultWaterAmount).ToString();
-        _foodAmount.text = RemoteSettings.GetInt("initial_food", _defaultFoodAmount).ToString();
+        _water.Initialize();
+        _food.Initialize();
+        _gold.Initialize();
     }
 }
