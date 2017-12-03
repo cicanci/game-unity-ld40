@@ -41,8 +41,12 @@ public class RemoteSettingsCache : MonoBehaviour
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
+#if ENABLE_REMOTE_SETTINGS
         RemoteSettings.Updated += HandleRemoteUpdate;
+#else
+        UseLocalSettings();
+#endif
+        DontDestroyOnLoad(gameObject);
     }
 
     private void HandleRemoteUpdate()
@@ -61,5 +65,22 @@ public class RemoteSettingsCache : MonoBehaviour
 
         Initialized = true;
         RemoteSettings.Updated -= HandleRemoteUpdate;
+    }
+
+    private void UseLocalSettings()
+    {
+        InitialWater = _defaultInitialWater;
+        InitialFood = _defaultInitialFood;
+        InitialGold = _defaultInitialGold;
+
+        WaterPerSecond = _defaultWaterPerSecond;
+        FoodPerSecond = _defaultFoodPerSecond;
+        GoldPerSecond = _defaultGoldPerSecond;
+
+        MaxWater = _defaultMaxWater;
+        MaxFood = _defaultMaxFood;
+        MaxGold = _defaultMaxGold;
+
+        Initialized = true;
     }
 }
