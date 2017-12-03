@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour 
 {
-    public enum ResourceType
+    private enum ResourceType
     {
         Water,
         Food,
