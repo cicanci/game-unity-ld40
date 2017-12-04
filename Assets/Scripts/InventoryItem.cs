@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour 
 {
-    public enum ResourceType
+    private enum ResourceType
     {
         Water,
         Food,
@@ -16,7 +16,8 @@ public class InventoryItem : MonoBehaviour
     [SerializeField]
     private Text _amountText;
 
-    private float _currentProduction;
+    public float CurrentProduction { private set; get; }
+
     private float _productionPerSecond;
     private int _maxProduction;
     private float _timer;
@@ -28,23 +29,23 @@ public class InventoryItem : MonoBehaviour
         switch(_resourceType)
         {
             case ResourceType.Water:
-                _currentProduction = RemoteSettingsCache.InitialWater;
+                CurrentProduction = RemoteSettingsCache.InitialWater;
                 _productionPerSecond = RemoteSettingsCache.WaterPerSecond;
                 _maxProduction = RemoteSettingsCache.MaxWater;
                 break;
             case ResourceType.Food:
-                _currentProduction = RemoteSettingsCache.InitialFood;
+                CurrentProduction = RemoteSettingsCache.InitialFood;
                 _productionPerSecond = RemoteSettingsCache.FoodPerSecond;
                 _maxProduction = RemoteSettingsCache.MaxFood;
                 break;
             case ResourceType.Gold:
-                _currentProduction = RemoteSettingsCache.InitialGold;
+                CurrentProduction = RemoteSettingsCache.InitialGold;
                 _productionPerSecond = RemoteSettingsCache.GoldPerSecond;
                 _maxProduction = RemoteSettingsCache.MaxGold;
                 break;
         }
 
-        _amountText.text = _currentProduction + "";
+        _amountText.text = CurrentProduction + "";
         _initialized = true;
     }
 
@@ -55,7 +56,7 @@ public class InventoryItem : MonoBehaviour
             return;
         }
 
-        if(Mathf.RoundToInt(_currentProduction) < _maxProduction)
+        if(Mathf.RoundToInt(CurrentProduction) < _maxProduction)
         {
             _timer += Time.deltaTime;
             int seconds = Mathf.RoundToInt(_timer);
@@ -63,19 +64,19 @@ public class InventoryItem : MonoBehaviour
             if(Mathf.RoundToInt(_timer) > _lastSecond)
             {
                 _lastSecond = seconds;
-                _currentProduction += _productionPerSecond;
+                CurrentProduction += _productionPerSecond;
                 
-                if(Mathf.RoundToInt(_productionPerSecond) < _maxProduction)
+                if(Mathf.RoundToInt(CurrentProduction) < _maxProduction)
                 {
-                    _amountText.color = Color.black;
+                    _amountText.color = Color.white;
                 }
                 else
                 {
-                    _currentProduction = _maxProduction;
+                    CurrentProduction = _maxProduction;
                     _amountText.color = Color.green;
                 }
 
-                _amountText.text = Mathf.RoundToInt(_currentProduction).ToString();
+                _amountText.text = Mathf.RoundToInt(CurrentProduction).ToString();
             }
         }
     }

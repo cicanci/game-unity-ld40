@@ -2,9 +2,6 @@
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] 
-    private Material _selectedColor;
-
     private void Update() 
     {
         if(Input.GetMouseButtonDown(0)) 
@@ -15,7 +12,7 @@ public class PlayerInput : MonoBehaviour
             {
                 if(hit.rigidbody != null)
                 {
-                    hit.rigidbody.GetComponent<MeshRenderer>().material = _selectedColor;
+                    hit.rigidbody.GetComponent<GroundBlock>().SelectBlock();
                 }
             }
         }

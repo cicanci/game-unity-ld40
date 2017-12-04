@@ -21,6 +21,7 @@ public class GroundGenerator : MonoBehaviour
 
     private void GenerateGround()
     {
+        int counter = 0;
         for(int i = 0; i < _boardSize.x; i++)
         {
             for(int j = 0; j < _boardSize.y; j++)
@@ -33,6 +34,9 @@ public class GroundGenerator : MonoBehaviour
                     position.x + (i * _spaceOffset),
                     position.y,
                     position.z + (j * _spaceOffset));
+
+                block.GetComponent<GroundBlock>().BlockId = counter;
+                counter++;
             }
         }
     }

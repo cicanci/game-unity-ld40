@@ -123,3 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec8e15ac285c3845a61cab12add2433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _selectedColor: {fileID: 2100000, guid: 2bad281155f51524ca29eae7f478b562, type: 2}
+  _playerArmyPrefab: {fileID: 1808186853240240, guid: 139f3e4d4d7170e43a6b7cf770513f7a,
+    type: 2}
+  _enemyArmyPrefab: {fileID: 1636191862551970, guid: 18b05e1a5ab32064197556f3f91bd568,
+    type: 2}
