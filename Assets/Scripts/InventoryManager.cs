@@ -10,6 +10,13 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     private InventoryItem _gold;
 
+    public static InventoryManager Instance { private set; get; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         StartCoroutine(WaitForRemoteSettings());

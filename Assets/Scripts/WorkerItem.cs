@@ -25,13 +25,33 @@ public class WorkerItem : MonoBehaviour
 
     public void AddWorker()
     {
-        _currentAmount++;
-        _amountText.text = _currentAmount + "";
+        if(_currentAmount < GetMaxAmount())
+        {
+            _currentAmount++;
+            _amountText.text = _currentAmount + "";
+        }
     }
 
     public void RemoveWorker()
     {
-        _currentAmount--;
-        _amountText.text = _currentAmount + "";
+        if(_currentAmount > 0)
+        {
+            _currentAmount--;
+            _amountText.text = _currentAmount + "";
+        }
+    }
+
+    private int GetMaxAmount()
+    {
+        switch(_resourceType)
+        {
+            case ResourceType.Water:
+                return RemoteSettingsCache.MaxWater;
+            case ResourceType.Food:
+                return RemoteSettingsCache.MaxFood;
+            case ResourceType.Gold:
+                return  RemoteSettingsCache.MaxGold;
+        }
+        return 0;
     }
 }

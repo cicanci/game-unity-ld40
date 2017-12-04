@@ -54,9 +54,9 @@ MonoBehaviour:
   _defaultInitialWater: 0
   _defaultInitialFood: 0
   _defaultInitialGold: 0
-  _defaultWaterPerSecond: 2
+  _defaultWaterPerSecond: 1
   _defaultFoodPerSecond: 1
-  _defaultGoldPerSecond: 10
+  _defaultGoldPerSecond: 1
   _defaultMaxWater: 100
   _defaultMaxFood: 100
   _defaultMaxGold: 100
